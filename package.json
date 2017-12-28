@@ -1,0 +1,47 @@
+{
+  "name": "instagraph-scripts",
+  "version": "0.0.0",
+  "description": "Various instagram scripts to play with the API.",
+  "main": "index.js",
+  "repository": {
+    "type": "git"
+  },
+  "keywords": ["instagram", "scripts"],
+  "author": "Nicolas Biehler <biehler.nicolas@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.rezf.co"
+  },
+  "scripts": {
+    "lint": "eslint '**/*.js' && commitlint --from=master",
+    "lint-fix": "yarn lint-fix:js && yarn lint-fix:json",
+    "lint-fix:js": "eslint '**/*.js' --fix",
+    "lint-fix:json": "prettier '**/*.json' --write",
+    "cm": "commit",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "release": "standard-version"
+  },
+  "dependencies": {
+    "@commitlint/cli": "^4.3.0",
+    "@commitlint/config-angular": "^4.3.0",
+    "@commitlint/config-lerna-scopes": "^4.3.0",
+    "@commitlint/prompt-cli": "^4.3.0",
+    "bent": "^1.1.0",
+    "eslint": "^4.13.1",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-config-standard-react": "^5.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.4.3",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.14.3",
+    "lodash": "^4.17.4",
+    "prettier": "^1.9.2",
+    "standard-version": "^4.2.0",
+    "yargs": "^10.0.0"
+  }
+}
