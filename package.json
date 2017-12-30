@@ -6,7 +6,10 @@
   "repository": {
     "type": "git"
   },
-  "keywords": ["instagram", "scripts"],
+  "keywords": [
+    "instagram",
+    "scripts"
+  ],
   "author": "Nicolas Biehler <biehler.nicolas@gmail.com>",
   "license": "MIT",
   "publishConfig": {
@@ -38,7 +41,9 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "^3.0.1",
+    "fs-extra": "^5.0.0",
     "husky": "^0.14.3",
+    "json2csv": "^3.11.5",
     "lodash": "^4.17.4",
     "prettier": "^1.9.2",
     "standard-version": "^4.2.0",
