@@ -21,13 +21,6 @@
         "singleQuote": true,
         "trailingComma": "es5"
       }
-    ],
-    "no-restricted-globals": [
-      "warn",
-      {
-        "name": "Promise",
-        "message": "Use local bluebird Promise instead of global Promise"
-      }
     ]
   }
 }
