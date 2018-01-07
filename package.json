@@ -1,6 +1,6 @@
 {
   "name": "instagraph-scripts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Various instagram scripts to play with the API.",
   "main": "index.js",
   "repository": {
