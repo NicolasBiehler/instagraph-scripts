@@ -53,23 +53,26 @@ function getUrl(maxId = null) {
 
 function filterPosts(posts) {
   return _.map(p => ({
-    uri: `https://www.instagram.com/p/${p.code}`,
-    date: new Date(p.date * 1000).toISOString(),
+    uri: `https://www.instagram.com/p/${p.shortcode}`,
+    date: new Date(p.taken_at_timestamp * 1000).toISOString(),
   }))(posts)
 }
 
 async function getPosts(maxId = null, previousPosts = []) {
-  await appendToFile(argv.file, previousPosts)
-
   const uri = getUrl(maxId)
   console.log({ uri }, 'the url being queried')
 
-  const { nodes: posts, count: totalAmount, page_info: pageInfo } = _.get([
-    'tag',
-    'media',
+  const { edges, count: totalAmount, page_info: pageInfo } = _.get([
+    'graphql',
+    'hashtag',
+    'edge_hashtag_to_media',
   ])(await getJSON(uri))
+  const posts = _.pluck('node')(edges)
 
-  const filteredPosts = [...previousPosts, ...filterPosts(posts)]
+  const newPosts = filterPosts(posts)
+  await appendToFile(argv.file, newPosts)
+
+  const filteredPosts = [...previousPosts, ...newPosts]
   const totalReceived = filteredPosts.length
   console.log({ totalReceived, totalAmount }, 'one page retrieved')
 
