@@ -7,6 +7,7 @@
  */
 
 const bent = require('bent')
+const execa = require('execa')
 const { isURL } = require('validator')
 const yargs = require('yargs')
 const _ = require('lodash/fp')
@@ -26,14 +27,17 @@ const { argv } = yargs
     alias: 'o',
     demand: true,
   })
+  .option('sort', {
+    describe: 'sort the result in the csv file',
+    alias: 's',
+    default: false,
+  })
   .strict()
 
 async function getLocation(postUrl) {
   const uri = `${postUrl}/?__a=1`
 
-  const result = filterLocation(await getJSON(uri))
-
-  return result
+  return filterLocation(await getJSON(uri))
 }
 
 function filterLocation(post) {
@@ -72,6 +76,12 @@ async function main() {
   }
 
   await readFileByLine(argv.input, onData)
+  if (argv.sort) {
+    const sortCmd = `sort -u -t, -k3,3 ${argv.output} > ${
+      argv.output
+    }-filtered `
+    await execa.shell(sortCmd)
+  }
 }
 
 main()
